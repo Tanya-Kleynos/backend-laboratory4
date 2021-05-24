@@ -1,0 +1,33 @@
+﻿@model Backend4.Models.SignUpPasswordViewModel
+@{
+    ViewBag.Title = "Sign up";
+    int i = 0;
+}
+
+<h2>Sign up result</h2>
+<dl asp-action="SignUpResult" class="dl-horizontal">
+    <dt>First name</dt>
+    <dd>@Model.FirstName</dd>
+    <dt>Last name</dt>
+    <dd>@Model.LastName</dd>
+    <dt>Birthday</dt>
+    <dd>@while (i < 13) 
+        { 
+            if (Model.BirthdayMonth == Model.Months[i].Id) 
+            { 
+                break; 
+            } 
+            i++; 
+        } 
+        @Model.Months[i].Name @Model.BirthdayDay, @Model.BirthdayYear</dd>
+    <dt>Gender</dt>
+    <dd>@Model.Gender</dd>
+    <dt>Email</dt>
+    <dd>@Model.Email</dd>
+    <dt>Password</dt>
+    <dd>@Model.Password</dd>
+    <dt>User existed</dt>
+    <dd>@Model.Existed</dd>
+    <dt>Remembered</dt>
+    <dd>@Model.Remember</dd>
+</dl>

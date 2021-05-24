@@ -1,0 +1,50 @@
+﻿@model Backend4.Models.SignUpPersonalInfoViewModel
+
+@{
+    ViewBag.Title = "Sign up";
+    int i = 0;
+}
+
+<h2>Sign up</h2>
+<p>User with same profile data already exists. Are you sure you want to sign up?</p>
+
+<form asp-action="SignUpAlreadyExists" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input asp-for="@Model.FirstName" type="hidden" />
+    <input asp-for="@Model.LastName" type="hidden" />
+    <input asp-for="@Model.BirthdayDay" type="hidden" />
+    <input asp-for="@Model.BirthdayMonth" type="hidden" />
+    <input asp-for="@Model.BirthdayYear" type="hidden" />
+    <input asp-for="@Model.Gender" type="hidden" />
+    <input asp-for="@Model.Existed" type="hidden" />
+    <div class="form-group">
+        <label class="col-md-2 control-label">First name</label>
+        <div class="col-md-10">
+            <p class="form-control-static">@Model.FirstName</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Last name</label>
+        <div class="col-md-10">
+            <p class="form-control-static">@Model.LastName</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Birthday</label>
+        <div class="col-md-10 form-inline">
+            <p class="form-control-static"> @while (i < 13) { if (Model.BirthdayMonth == Model.Months[i].Id) { break; } i++; }
+               @Model.Months[i].Name @Model.BirthdayDay , @Model.BirthdayYear</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Gender</label>
+        <div class="col-md-10">
+            <p class="form-control-static">@Model.Gender</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+            <button type="submit" class="btn btn-primary">Sign up anyway</button>
+        </div>
+    </div>
+</form>
